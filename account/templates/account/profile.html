@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block base %}
+
+<div style="max-width: 800px; margin: auto;">
+
+
+<div class="w3-margin-bottom" style="height: 120px;padding: 10px 12px;">
+
+      <div class="w3-left" style="padding: 5px 16px;">
+      <p> {{ object.name }}</p>
+      </div>
+      <br>
+      <br>
+
+<div>
+    <a href="{% url 'password_change' %}">
+    <button class="w3-button">Change Password</button>
+    </a>
+    <a href="{% url 'profile-update' %}">
+    <button class="w3-button">Edit Profile</button>
+    </a>
+    <a href="{% url 'logout' %}">
+    <button class="w3-button">Logout</button>
+    </a>
+</div>
+</div>
+
+<div class="w3-row-padding w3-container" style="max-width: 800px; margin:auto;">
+{% for abc in blog %}
+
+<a href="{{ abc.get_absolute_url }}">
+<div style="border: 1px solid black; height: 140px; margin: 5px;" class="w3-round w3-col s12">
+  <div class="w3-container">
+      <h3>{{ abc.title }}</h3>
+      <p class="w3-opacity">{{ abc.user.name }}</p>
+    </div>
+    {% if abc.user == object %}
+    <a href="{{ abc.get_edit_absolute_url }}">
+    <button class="w3-button">Edit</button>
+    </a>
+    {% endif %}
+
+</div>
+</a>
+{% empty %}
+    <p class="w3-opacity">No blog</p>
+{% endfor %}
+</div>
+
+
+</div>
+
+{% endblock %}

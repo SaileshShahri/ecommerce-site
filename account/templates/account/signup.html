@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block base %}
+
+{% include 'account/snip/acss.html' %}
+
+<div class="w3-container w3-round w3-padding-16" style="background-color: #ffffff; color: #000000; border: 1px #ffffff; max-width: 700px; margin: auto;">
+ <h2 class="w3-wide w3-center">BRAND</h2>
+
+
+    <h5 style="color: blue" class="w3-center">Sign up</h5>
+    <div class="w3-padding-large" style="">
+    <form method='POST'> {% csrf_token %}
+
+      {{ form }}
+      <button type='submit' class='w3-button w3-padding w3-margin-bottom' style="width: 100%; background-color: blue; color: white;">Sign up </button>
+    </form>
+    <p>Already a user, <a href="{% url 'login' %}">Login</a></p>
+</div>
+
+
+</div>
+
+
+
+{% endblock %}
