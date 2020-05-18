@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block base %}
+<style>
+.a2 {
+  background-color: #eb0000;
+  color: white; 
+}
+
+/* Add a black background color to the top navigation bar */
+.topnav {
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type=text] { 
+  width: 100%;
+  padding: 6px;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  font-size: 14px;
+}
+</style>
+
+
+<div class="w3-bar a2" style="">
+
+<a href="{% url 'home' %}" class="w3-bar-item w3-center w3-padding" style="width: 15%; height: 100%;">Brand</a>
+
+<a class="topnav w3-bar-item w3-hide-small w3-hide-medium w3-border w3-center" style="width: 45%; padding: 0; margin-left: 15px; margin-right: 15px; margin-top: 5px;">
+ <form method="GET" action='{% url "search" %}'>
+    <input class="abc" type="text" style="padding-left: 10px;" placeholder="Search" name='q' aria-label="Search" value='{{ request.GET.q }}'>
+</form>
+</a>
+  {% if user.is_authenticated %}
+  <a href="{% url 'accountprofile' %}" class="w3-bar-item w3-right w3-hide-small"><i class="material-icons">account_circle</i></a>
+  <a href="{% url 'notification' %}" class="w3-bar-item w3-right w3-hide-small"><i class="material-icons">notifications</i></a>
+  {% else %}
+  <a href="{% url 'signup' %}" class="w3-bar-item w3-right w3-hide-small"><i class="material-icons">account_circle</i></a>
+{% endif %}
+
+  <a href="" class="w3-bar-item">
+ <div class="w3-dropdown-hover w3-hide-medium w3-hide-small w3-right" style="margin: 0px;">
+    <button class="w3-button" style="padding: 2px 5px;">Shop by Category</button>     
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+      <a href="{% url 'category-electronics' %}" class="w3-bar-item w3-button">Electronics</a>
+      <a href="{% url 'category-men' %}" class="w3-bar-item w3-button">Men's Fashion</a>
+      <a href="{% url 'category-women' %}" class="w3-bar-item w3-button">Women's Fashion</a>
+      <a href="{% url 'category-fashion' %}" class="w3-bar-item w3-button">Fashion</a>
+      <a href="{% url 'category-home' %}" class="w3-bar-item w3-button">Home</a>
+      <a href="{% url 'category-grocery' %}" class="w3-bar-item w3-button">Grocery</a>
+      <a href="{% url 'category-beauty' %}" class="w3-bar-item w3-button">Beauty</a>
+    </div>
+  </div>
+  </a>
+  <a href="{% url 'suggest-main' %}" class="w3-bar-item w3-right w3-hide-small"><i class="material-icons">apps</i></a>
+
+</div>
+
+
+<style>
+.topnav {
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 6px;
+  text-decoration: none;
+  font-size: 17px;
+  border-bottom: 3px solid transparent;
+  width: 50%;
+}
+
+.topnav a:hover {
+  border-bottom: 3px solid #1da1f2;
+}
+
+.topnav a.active {
+  border-bottom: 3px solid #1da1f2;
+}
+</style>
+
+<div class="topnav">
+  <a href="{% url 'notification' %}">Notification</a>
+  <a href="{% url 'wishlist' %}" class="active">Wishlist</a>
+</div>
+
+
+<div class="w3-bar">
+	<a href="{% url 'wishlist-create' %}" class="w3-bar-item w3-right">
+		<i class="material-icons">add</i></a>
+</div>
+
+<div class="w3-padding" style="padding-top: 10px;">
+{% for object in wishlist %}
+  <a href="{{ object.get_absolute_url }}"> 
+  <div class="w3-padding w3-card w3-margin-bottom w3-round">
+    <p>{{ object.title }}<br>
+    <small class="w3-opacity">{{ object.timestamp }}</small></p>
+  </div>
+  </a>
+{% endfor %}
+
+</div>
+
+
+<style>
+* {box-sizing: border-box}
+
+.navbar {
+  background-color: #ffffff;
+  overflow: auto;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: #333333;
+  text-decoration: none;
+  font-size: 17px;
+  width: 20%; /* Four links of equal widths */
+  text-align: center;
+}
+
+.navbar a:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.navbar a.active {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 10px) {
+  .navbar a {
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+</style>
+
+
+{% if user.is_authenticated %}
+<div class="navbar w3-hide-large w3-hide-medium">
+  <a href="{% url 'home' %}"><i class="material-icons">home</i></a> 
+  <a href="{% url 'message-list' %}"><i class="material-icons">email</i></a> 
+  <a href="{% url 'suggest-main' %}"><i class="material-icons">search</i></a> 
+  <a class="active" href="{% url 'notification' %}"><i class="material-icons">notifications</i></a>
+  <a href="{% url 'accountprofile' %}"><i class="material-icons">account_circle</i></a>
+</div>
+{% endif %}
+
+
+{% endblock %}
+

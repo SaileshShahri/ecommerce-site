@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block base %}
+
+{% include 'account/snip/acss.html' %}
+
+<style>
+.button {
+  border: none;
+  color: white;
+  background-color: #1da1f2;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+input[type=text], input[type=password] , select {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: 1px solid black;
+  background: #ffffff;
+  border-radius: 5px;
+}
+input[type=text]:focus, input[type=password]:focus , select:focus {
+  outline: none;
+}
+.a3 {
+    background-color: #ffffff;
+    color: #000000; 
+    border: 1px #ffffff; 
+    max-width: 750px; 
+    margin: auto;
+  }
+</style>
+
+<div class="w3-container" style="background-color: #ffffff; color: #000000; border: 1px #ffffff; max-width: 750px; margin: auto;">
+
+
+    <div class="w3-padding" style="">
+    <h5 class="w3-center">Select a Wishlist</h5>
+    <form method='POST'> {% csrf_token %}
+      {% if form.errors %}
+  <b style="color: #eb0000;">Warning:</b><br>
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="" style="color: #eb0000;">
+                <span>{{ error|escape }}</span><br>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="" style="color: #eb0000;">
+            <span>{{ error|escape }}</span><br>
+        </div>
+    {% endfor %}
+    {% endif %}
+      Wishlist:<br>
+      {{ form.wishlist }}<br>
+      <button type='submit' class='button w3-round w3-padding w3-margin-bottom' style="width: 100%">Save </button>
+    </form>
+</div>
+
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block base %}
+
+{% include 'account/snip/acss.html' %}
+
+<div class="w3-container" style="background-color: #ffffff; color: #000000; border: 1px #ffffff; max-width: 700px; margin: auto;">
+
+
+    <div class="w3-padding" style="">
+    <h5 class="w3-center">Wishlist</h5>
+    <form method='POST'> {% csrf_token %}
+      {% if form.errors %}
+	<b style="color: #eb0000;">Warning:</b><br>
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="" style="color: #eb0000;">
+                <span>{{ error|escape }}</span><br>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="" style="color: #eb0000;">
+            <span>{{ error|escape }}</span><br>
+        </div>
+    {% endfor %}
+    {% endif %}
+		Title:<br> 
+      {{ form.title }}<br>
+      <button type='submit' class='button w3-round w3-padding w3-margin-bottom' style="width: 100%">Save</button>
+    </form>
+</div>
+
+
+</div>
+
+
+
+{% endblock %}
