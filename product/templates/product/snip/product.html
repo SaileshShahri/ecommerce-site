@@ -1,0 +1,8 @@
+{% load static %}
+<a href="{{ object.get_absolute_url }}"> 
+<div class="w3-card">
+	<p>{{ object.title }}</p>
+	<p>{{ object.price }}</p>
+	<p>{{ object.comparedprice }}</p>
+</div>
+</a>
