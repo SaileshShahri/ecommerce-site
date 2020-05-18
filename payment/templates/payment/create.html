@@ -1,0 +1,17 @@
+{% extends "base1.html" %}
+
+{% block signup %}
+
+
+<div class="w3-container w3-round w3-padding-16" style="background-color: #ffffff; color: #000000; border: 1px #ffffff">
+
+    <form method='POST'> {% csrf_token %}
+      {{ form }}
+      <button type='submit' class='button button5 w3-round w3-padding w3-margin-bottom' style="width: 100%">Pay </button>
+    </form>
+
+</div>
+
+
+
+{% endblock %}
