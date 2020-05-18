@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block base %}
+{% include 'homenavbar/navbar2.html' %}
+
+
+<div class="" style="max-width: 1024px; margin: auto;">
+  <h5 class="w3-center">Address</h5>
+  <div class="w3-bar">
+      <a href="{% url 'address-add' %}" class="w3-right w3-bar-item"><i class="material-icons">add</i></a>
+  </div>
+
+
+<div class="w3-row-padding w3-container">
+{% for abc in aobj %}
+
+<div style="border: 1px solid black; height: 200px; margin: 5px;" class="w3-round w3-col l3 m5 s12"> 
+  <div class="w3-bar">
+      <a href="" class="w3-bar-item">{{ abc.address_type }}</a>
+      <a href="{{ abc.get_delete_absolute_url }}" class="w3-bar-item w3-right"><i class="material-icons" style="font-size: 18px;">delete</i></a>
+      <a href="{{ abc.get_absolute_url }}" class="w3-bar-item w3-right"><i class="material-icons" style="font-size: 18px;">edit</i></a>
+  </div>
+  <div class="w3-container">
+      {{ abc.title }}<br>
+      {{ abc.address_line }}<br>
+      {{ abc.area }}, {{ abc.city }}<br>
+      {{ abc.state }}, {{ abc.pincode }}<br>
+    </div>
+
+</div>
+{% empty %}
+    <p class="w3-opacity">No Address</p>
+
+
+{% endfor %}
+</div>
+
+
+
+
+{% endblock %}
